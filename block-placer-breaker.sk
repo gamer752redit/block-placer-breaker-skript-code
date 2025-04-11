@@ -1,0 +1,22 @@
+command /stick <text>:
+    permission: stick.give
+    permission message: &cDu hast keine Berechtigung, diesen Befehl zu benutzen!
+    trigger:
+        if arg-1 is "block-Placer":
+            give player stick named "&bBlock-Placer"
+            send "&aDu hast einen &bBlock-Placer &aerhalten!"
+        else if arg-1 is "block-Breaker":
+            give player stick named "&cBlock-Breaker"
+            send "&aDu hast einen &cBlock-Breaker &aerhalten!"
+        else:
+            send "&cUngültige Auswahl! Benutze &e/stick block-Placer &coder &e/stick block-Breaker"
+
+on right click with stick:
+    if name of player's tool is "&bBlock-Placer":
+        set block at target block to stone
+        send action bar "&aBlock platziert!" to player
+
+on left click with stick:
+    if name of player's tool is "&cBlock-Breaker":
+        break target block
+        send action bar "&cBlock zerstört!" to player
